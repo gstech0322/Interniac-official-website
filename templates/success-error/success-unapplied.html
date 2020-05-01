@@ -1,0 +1,11 @@
+{% extends 'success-error/success.html' %}
+
+
+{% block message %}
+    <p>Your request has been processed!<br>Thank you.</p>
+    <p>Unapplied for {{ which.title }}</p>
+{% endblock %}
+
+{% block return %}
+    <a class="back" href="{% url 'marketplace' %}">Go to marketplace</a>
+{% endblock return %}

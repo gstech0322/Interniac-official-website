@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% include 'boilerplate/bootstrap.html' %}
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+        <title>Interniac</title>
+    </head>
+    <body>
+
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item nav-item-active">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        <section>
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-md-5">
+                        <div class="text-center">
+                            <img width="100%" src="{% static 'assets/images/register.svg' %}" alt="welcome"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="mb-3 primary">Register</h3>
+                        <form id="registration-form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    <p>
+                                        {{ form.first_name.label_tag }}
+                                        {{ form.first_name }}
+                                        {{ form.first_name.errors }}
+                                    </p>
+                                </div>
+
+                                <div class="col-md-5 ml-1">
+                                    <p>
+                                        {{ form.last_name.label_tag }}
+                                        {{ form.last_name }}
+                                        {{ form.last_name.errors }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    <p>
+                                        {{ form.email.label_tag }}
+                                        {{ form.email }}
+                                        {{ form.email.errors }}
+                                    </p>
+                                </div>
+                                <div class="col-md-5 col-md-1">
+                                    <p>
+                                        {{ form.profile_picture.label_tag }}
+                                        {{ form.profile_picture }}
+                                        {{ form.profile_picture.errors }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    <p>
+                                        {{ form.password1.label_tag }}
+                                        {{ form.password1 }}
+                                        {{ form.password1.errors }}
+
+                                    </p>
+                                </div>
+
+                                <div class="col-md-5 ml-1">
+                                    <p>
+                                        {{ form.password2.label_tag }}
+                                        {{ form.password2 }}
+                                        {{ form.password2.errors }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    {{ form.student_employer.label_tag }}
+                                    {{ form.student_employer }}
+                                    {{ form.student_employer.errors }}
+                                </div>
+                            </div>
+
+                            <div class="row mt-2" id="company-name" style="display: none">
+                                <div class="col-md-5">
+                                    {{ form.company_name.label_tag }}
+                                    {{ form.company_name }}
+                                    {{ form.company_name.errors }}
+                                </div>
+                            </div>
+                    
+                            <div class="row mb-3">
+                                <div class="col-md-5 mr-1">
+                                    {{ form.captcha }}
+                                    {{ form.captcha.errors }}
+                                </div>
+                            </div>
+                           
+                            <button type="submit" class="btn btn-primary mb-2">Create Account</button>
+                        </form>
+                        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

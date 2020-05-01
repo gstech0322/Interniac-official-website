@@ -1,0 +1,62 @@
+<form name="filters" method="get" id="filters" action="{% url 'filter' %}">
+    <div>
+        {{ filters.type.label_tag }}
+        {{ filters.type }}
+    </div>
+
+    <div class="mt-4">
+        {{ filters.where.label_tag }}
+        {{ filters.where }}
+    </div>
+
+    <div class="mt-4">
+        {% if filters.career %}
+            {{ filters.career.label_tag }}
+            {{ filters.career }}
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        {% if filters.company %}
+            {{ filters.company.label_tag }}
+            {{ filters.company }}
+        {% endif %}
+    </div>
+    
+
+
+    
+
+    
+
+    
+</form>
+
+
+<script type="text/javascript">
+
+    let filtersForm = $('#filters');
+    let filters;
+
+    $('form select').change(function () {
+        filter()
+    })
+
+    function filter() {
+        // save the current filters
+        filters = filtersForm.serialize()
+        $.ajax({
+            type: filtersForm.attr('method'),
+            url: filtersForm.attr('action'),
+            data: filters + "&" + search,
+            success: function (data) {
+                $("#listings").html(data);
+            },
+            error: function (_) {
+                $("#listings").html("Something went wrong!");
+            }
+        });
+        return false;
+    }
+
+</script>

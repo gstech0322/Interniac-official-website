@@ -1,0 +1,14 @@
+{% extends 'careers/careers-page.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
+        <i class="fas fa-arrow-circle-left fa-2x"></i>
+    </a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary w-100" type="submit">Save</button>
+    </form>
+</div>
+{% endblock %}

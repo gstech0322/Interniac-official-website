@@ -1,0 +1,33 @@
+<form id="search" method="get" action="{% url 'filter' %}">
+    <div class="row">
+        <div class="col-md-10">
+            <input id="searchbar" class="w-100 bg-white" type="search" name="search" placeholder="Search">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-outline-success float-right w-50 h-100" type="submit"><i
+                    class="fas fa-search"></i></button>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    let searchFrm = $('#search');
+    let search;
+    searchFrm.submit(function () {
+        // save the current search
+        search = searchFrm.serialize()
+        $.ajax({
+            type: searchFrm.attr('method'),
+            url: searchFrm.attr('action'),
+            data: search + "&" + filters,
+            success: function (data) {
+                $("#listings").html(data);
+            },
+            error: function (data) {
+                $("#listings").html("Something went wrong!");
+            }
+        });
+        return false;
+    });
+</script>
