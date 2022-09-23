@@ -1,15 +1,4 @@
 <div align="center">
-    <h1>
-    🔨  Interniac's Official Website  🔨 <br>
-        <a href='https://www.interniac.org'>https://interniac.org</a>
-    </h1>
-</div>
-
-<div align='center'>    
-        <img src="https://www.interniac.org/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
-    </div>
-
-<div align="center">
         <a href="https://www.python.org/downloads/release/python-394/">
             <img src="https://img.shields.io/badge/python-3.9.4-blue.svg" alt="Python 3.9.4" />
         </a>
@@ -36,11 +25,6 @@
     <a href="https://www.interniac.org">
         <img src="https://img.shields.io/badge/students%20hired-20%2B-green">
     </a>
-</div>
-
-<div align='left' style='margin-top: 5rem'>
-    <b><h2>Read the Docs</h2></b>
-    <a href="https://interniac-docs.netlify.app/">View the Interniac docs here</a>
 </div>
 
 <div align="left" style='margin-top: 5rem'>
